@@ -8,7 +8,7 @@ import { CarPartsComponent }   from './car-parts.component';
     imports:      [ BrowserModule ],
     declarations: [ 
         AppComponent,
-        CarPartsComponent 
+        CarPartsComponent
     ],
     bootstrap:    [ AppComponent ]
 })
