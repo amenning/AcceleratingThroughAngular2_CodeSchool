@@ -50,7 +50,8 @@ var CarPartsComponent = (function () {
     CarPartsComponent = __decorate([
         core_1.Component({
             selector: 'car-parts',
-            template: "\n        <p>There are {{totalCarParts()}} total parts in stock.</p>\n        <ul>\n            <li *ngFor=\"let carPart of carParts\">\n                <h2>{{carPart.name | uppercase}}</h2>\n                <p>{{carPart.description}}</p>\n                <p>{{carPart.price | currency:'EUR':true}}</p>\n                <p *ngIf=\"carPart.inStock > 0\">{{carPart.inStock}} in Stock</p>\n                <p *ngIf=\"carPart.inStock === 0\">Out of Stock</p>\n            </li>\n        <ul>"
+            templateUrl: 'app/car-parts.component.html',
+            styleUrls: ['app/car-parts.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], CarPartsComponent);
