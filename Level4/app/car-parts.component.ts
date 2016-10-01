@@ -33,4 +33,20 @@ export class CarPartsComponent {
             0
         );
     }
+
+    upQuantity(carPart){
+        if(carPart.quantity < carPart.inStock) carPart.quantity++;
+    }
+
+    downQuantity(carPart){
+        if(carPart.quantity != 0) carPart.quantity--;
+    }
+
+    showKey(event){
+        alert(event.keyCode);
+    }
+
+    getCoord(event){
+        console.log(event.clientX + ", " + event.clientY);
+    }
 }

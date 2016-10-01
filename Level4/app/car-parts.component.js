@@ -30,6 +30,20 @@ var CarPartsComponent = (function () {
     CarPartsComponent.prototype.totalCarParts = function () {
         return this.carParts.reduce(function (prev, current) { return prev + current.inStock; }, 0);
     };
+    CarPartsComponent.prototype.upQuantity = function (carPart) {
+        if (carPart.quantity < carPart.inStock)
+            carPart.quantity++;
+    };
+    CarPartsComponent.prototype.downQuantity = function (carPart) {
+        if (carPart.quantity != 0)
+            carPart.quantity--;
+    };
+    CarPartsComponent.prototype.showKey = function (event) {
+        alert(event.keyCode);
+    };
+    CarPartsComponent.prototype.getCoord = function (event) {
+        console.log(event.clientX + ", " + event.clientY);
+    };
     CarPartsComponent = __decorate([
         core_1.Component({
             selector: 'car-parts',
