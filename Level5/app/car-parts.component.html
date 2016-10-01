@@ -1,0 +1,29 @@
+<p>There are {{totalCarParts()}} total parts in stock.</p>
+<!--div [hidden]="!user.Admin">secret</div-->
+<input type="text" (keydown)="showKey($event)">
+<ul>
+  <li class="card" *ngFor="let carPart of carParts" [class.featured]="carPart.featured">
+    <div class="panel-body">
+      <div class="photo">
+        <img [src]="carPart.image" [alt]="carPart.description" (mouseover)="getCoord($event)">
+      </div>
+      <table class="product-info">
+        <tr>
+          <td>
+            <h2>{{carPart.name | uppercase}}</h2>
+            <p class="description">{{carPart.description}}</p>
+            <p *ngIf="carPart.inStock > 0">{{carPart.inStock}} in Stock</p>
+            <p *ngIf="carPart.inStock === 0">Out of Stock</p>
+            <div class="select-quantity">
+              <button class="increase" (click)="downQuantity(carPart)">-</button>
+              <input class="number" type="text" [(ngModel)]="carPart.quantity">
+              <button class="increase" (click)="upQuantity(carPart)">+</button>
+            </div>
+          </td>
+          <td class="price">{{carPart.price | currency:'EUR':true}}</td>
+        </tr>
+        <tr><button [disabled]="isDisabled">Purchase</button></tr>
+      </table>
+    </div>
+  </li>
+<ul>
