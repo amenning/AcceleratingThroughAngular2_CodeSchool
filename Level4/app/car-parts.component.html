@@ -16,7 +16,7 @@
             <p *ngIf="carPart.inStock === 0">Out of Stock</p>
             <div class="select-quantity">
               <button class="increase" (click)="downQuantity(carPart)">-</button>
-              {{carPart.quantity}}
+              <input class="number" type="text" [(ngModel)]="carPart.quantity">
               <button class="increase" (click)="upQuantity(carPart)">+</button>
             </div>
           </td>
