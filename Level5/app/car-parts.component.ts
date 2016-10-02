@@ -14,20 +14,22 @@ export class CarPartsComponent {
     constructor(private racingDataService: RacingDataService) { }
 
     ngOnInit() {
-        this.carParts = this.racingDataService.getCarParts();
+        this.racingDataService.getCarParts()
+            .subscribe(carParts => this.carParts = carParts);
     }
 
-    /*
-    Old way to code dynamic sum
+    //Old way to code dynamic sum
     totalCarParts(){
         let sum = 0;
-        for (let carPart of this.carParts){
-            sum += carPart.inStock;
+        if(Array.isArray(this.carParts)) {
+            for (let carPart of this.carParts){
+                sum += carPart.inStock;
+            }
         }
         return sum;
     }
-    */
 
+    /*
     // New way to code dynamic sum
     totalCarParts(){
         return this.carParts.reduce(
@@ -35,6 +37,7 @@ export class CarPartsComponent {
             0
         );
     }
+    */
 
     upQuantity(carPart){
         if(carPart.quantity < carPart.inStock) carPart.quantity++;

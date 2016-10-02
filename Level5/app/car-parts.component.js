@@ -15,22 +15,30 @@ var CarPartsComponent = (function () {
         this.racingDataService = racingDataService;
     }
     CarPartsComponent.prototype.ngOnInit = function () {
-        this.carParts = this.racingDataService.getCarParts();
+        var _this = this;
+        this.racingDataService.getCarParts()
+            .subscribe(function (carParts) { return _this.carParts = carParts; });
     };
-    /*
-    Old way to code dynamic sum
-    totalCarParts(){
-        let sum = 0;
-        for (let carPart of this.carParts){
-            sum += carPart.inStock;
+    //Old way to code dynamic sum
+    CarPartsComponent.prototype.totalCarParts = function () {
+        var sum = 0;
+        if (Array.isArray(this.carParts)) {
+            for (var _i = 0, _a = this.carParts; _i < _a.length; _i++) {
+                var carPart = _a[_i];
+                sum += carPart.inStock;
+            }
         }
         return sum;
+    };
+    /*
+    // New way to code dynamic sum
+    totalCarParts(){
+        return this.carParts.reduce(
+            (prev, current) => prev + current.inStock,
+            0
+        );
     }
     */
-    // New way to code dynamic sum
-    CarPartsComponent.prototype.totalCarParts = function () {
-        return this.carParts.reduce(function (prev, current) { return prev + current.inStock; }, 0);
-    };
     CarPartsComponent.prototype.upQuantity = function (carPart) {
         if (carPart.quantity < carPart.inStock)
             carPart.quantity++;
